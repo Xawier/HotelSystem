@@ -6,14 +6,16 @@
 
 package hotelsystem;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -41,21 +43,8 @@ public class HotelTest {
     }
 
     /**
-     * Test of add method, of class Hotel.
-     */
-    @Test
-    public void testAdd() {
-        System.out.println("add");
-        Room room = null;
-        Hotel instance = new Hotel();
-        instance.add(room);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of room method, of class Hotel.
-     */
+     *
     @Test
     public void testRoom() {
         System.out.println("room");
@@ -65,7 +54,7 @@ public class HotelTest {
         Room result = instance.room(name);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -76,13 +65,14 @@ public class HotelTest {
         System.out.println("findFreeRooms");
         Calendar start = null;
         Calendar end = null;
-        int n_persons = 0;
+        int n_persons = 2;
+        
         Hotel instance = new Hotel();
-        List<QueryResult> expResult = null;
+        List<QueryResult> emptyList = new ArrayList<QueryResult>();
         List<QueryResult> result = instance.findFreeRooms(start, end, n_persons);
-        assertEquals(expResult, result);
+        assertEquals(emptyList, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
     
 }
