@@ -5,6 +5,7 @@
  */
 package hotelsystem;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -13,14 +14,22 @@ import java.util.List;
  * @author Mateusz
  */
 public class Hotel {
-    void add(Room room){
+    List<Room> roomsList;
 
+    public Hotel() {
+        this.roomsList = new ArrayList<>();
     }
+            
+    void add(Room room){
+        this.roomsList.add(room);
+    }
+    
     Room room(String name){
         return null;
     }
     
-     List<QueryResult> findFreeRooms(Calendar start, Calendar end, int n_persons){
-       return null;  
-     }
+    List<QueryResult> findFreeRooms(Calendar start, Calendar end, int n_persons){
+        List<QueryResult> q = new ArrayList<>();
+        return q;
+    }
 }
