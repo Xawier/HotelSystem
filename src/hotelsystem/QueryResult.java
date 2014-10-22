@@ -19,6 +19,10 @@ public class QueryResult {
         this.rooms = new ArrayList<>();
     }
     
+    public void add(Room room){
+        this.rooms.add(room); 
+    }
+    
     List<Room> rooms(){
         return this.rooms;
     }

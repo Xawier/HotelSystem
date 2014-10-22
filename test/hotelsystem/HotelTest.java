@@ -9,6 +9,7 @@ package hotelsystem;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -55,24 +56,19 @@ public class HotelTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of findFreeRooms method, of class Hotel.
-     */
+    }*/
+    
     @Test
-    public void testFindFreeRooms() {
-        System.out.println("findFreeRooms");
-        Calendar start = null;
-        Calendar end = null;
+    public void testFindFreeRoomsIfEmpty(){
+        System.out.println("If empty findFreeRooms shoud return empty");
+        Calendar start = new GregorianCalendar(2014, 8, 12);
+        Calendar end = new GregorianCalendar(2014, 8, 15);
         int n_persons = 2;
         
         Hotel instance = new Hotel();
-        List<QueryResult> emptyList = new ArrayList<QueryResult>();
+        List<QueryResult> expRes = new ArrayList<>();
         List<QueryResult> result = instance.findFreeRooms(start, end, n_persons);
-        assertEquals(emptyList, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
+        assertEquals(expRes, result);
     }
-    
 }

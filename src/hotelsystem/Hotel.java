@@ -29,7 +29,17 @@ public class Hotel {
     }
     
     List<QueryResult> findFreeRooms(Calendar start, Calendar end, int n_persons){
-        List<QueryResult> q = new ArrayList<>();
-        return q;
+        List<QueryResult> result = new ArrayList<>();
+        
+        for(Room room: roomsList){
+            if(room.n_persons == n_persons){
+                QueryResult qr = new QueryResult();
+                qr.add(room);
+                
+                result.add(qr);
+            }
+        }
+        
+        return result;
     }
 }
