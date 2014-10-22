@@ -60,7 +60,7 @@ public class HotelTest {
     
     @Test
     public void testFindFreeRoomsIfEmpty(){
-        System.out.println("If empty findFreeRooms shoud return empty");
+        System.out.println("If empty findFreeRooms() shoud return empty");
         Calendar start = new GregorianCalendar(2014, 8, 12);
         Calendar end = new GregorianCalendar(2014, 8, 15);
         int n_persons = 2;
@@ -70,5 +70,20 @@ public class HotelTest {
         List<QueryResult> result = instance.findFreeRooms(start, end, n_persons);
         
         assertEquals(expRes, result);
+    }
+    
+    @Test
+    public void testFindFreeRoomsIfOneRoom(){
+       System.out.println("If one room findFreeRooms() shoud return one element's array");
+       Calendar start = new GregorianCalendar(2014, 8, 12);
+       Calendar end = new GregorianCalendar(2014, 8, 15);
+       int n_persons = 2;
+       
+       Hotel hotel = new Hotel();
+       Room room = new Room("dwojka", 2);
+       hotel.add(room);
+       
+       List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
+       assertEquals(1, result.size());
     }
 }
