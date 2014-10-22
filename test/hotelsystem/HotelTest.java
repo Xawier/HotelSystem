@@ -80,10 +80,26 @@ public class HotelTest {
        int n_persons = 2;
        
        Hotel hotel = new Hotel();
-       Room room = new Room("dwojka", 2);
+       Room room = new Room("dwojka", 2, 0);
        hotel.add(room);
        
        List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
        assertEquals(1, result.size());
+    }
+    
+    @Test
+    public void testFindFreeRoomsIfOneRoomWithPrice(){
+        System.out.println("If room with price 180 findFreeRooms() shoud return 180*n_days price");
+        Calendar start = new GregorianCalendar(2014, 8, 12);
+        Calendar end = new GregorianCalendar(2014, 8, 15);
+        int n_persons = 2;
+        int n_days = 3;
+        
+        Hotel hotel = new Hotel();
+        Room room = new Room("dwojka", 2, 180);
+        hotel.add(room);
+        
+        List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
+        assertEquals(180*n_days, result.get(0).price());
     }
 }

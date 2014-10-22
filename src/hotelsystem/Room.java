@@ -12,10 +12,12 @@ package hotelsystem;
 public class Room {
     public String name;
     public int n_persons;
+    public int price;
     
-    public Room(String name, int n_persons){
+    public Room(String name, int n_persons, int price){
         this.name = name;
         this.n_persons = n_persons;
+        this.price = price;
     }
     
     String name(){
@@ -24,5 +26,9 @@ public class Room {
     
     int n_persons(){
         return this.n_persons;
+    }
+    
+    int price(){
+        return this.price;
     }
 }
