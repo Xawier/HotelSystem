@@ -7,6 +7,7 @@
 package hotelsystem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -71,7 +72,7 @@ public class HotelTest {
         
         assertEquals(expRes, result);
     }
-    
+    /*
     @Test
     public void testFindFreeRoomsIfOneRoom(){
        System.out.println("If one room findFreeRooms() shoud return one element's array");
@@ -102,4 +103,81 @@ public class HotelTest {
         List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
         assertEquals(180*n_days, result.get(0).price());
     }
-}
+    */
+    @Test
+    public void testFindFreeRoomsIfTwoDifferentRooms(){
+        System.out.println("If four rooms (1-1, 2-2, 4-1) findFreeRooms() shoud return a ist of three possible results sorted according to price in increasing order");
+        Calendar start = new GregorianCalendar(2014, 8, 12);
+        Calendar end = new GregorianCalendar(2014, 8, 13);
+        int n_persons = 3;
+                
+        Hotel hotel = new Hotel();
+        Room room1 = new Room("jedynka", 1, 120);
+        Room room21 = new Room("dwojka1", 2, 180);
+        Room room22 = new Room("dwojka2", 2, 180);
+        Room room3 = new Room("czworka", 4, 300);
+        
+        hotel.add(room1);
+        hotel.add(room21);
+        hotel.add(room22);
+        hotel.add(room3);
+        
+        List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
+        assertEquals(4, result.size());
+    }
+    
+    @Test
+    public void testReserve(){
+        System.out.println("Test reseve method");
+        Calendar start1 = new GregorianCalendar(2014, 8, 11);
+        Calendar end2 = new GregorianCalendar(2014, 8, 12);
+        Calendar start = new GregorianCalendar(2014, 8, 10);
+        Calendar end = new GregorianCalendar(2014, 8, 13);
+        Person person = new Person("Michal", "Stachowicz", "m.stachowicz@uj.edu.pl", "jakis adres 9a");
+    
+        Hotel hotel = new Hotel();
+        List<Room> list_room = new ArrayList();
+        QueryResult qr = new QueryResult();
+        Room room1 = new Room("jedynka", 1, 120);
+        hotel.add(room1);
+        list_room.add(room1);
+        qr.rooms = list_room;
+        
+        hotel.reserve(start, end, qr, person);
+        assertEquals(true, room1.isReserved(start1, end2));
+    }
+    
+    @Test
+    public void testCheapestFindRooms(){
+        System.out.println("Find the cheapest rooms");
+        
+        Calendar start = new GregorianCalendar(2014, 8, 12);
+        Calendar end = new GregorianCalendar(2014, 8, 13);
+        int n_persons = 3;
+        
+        Hotel hotel = new Hotel();
+        Room room1 = new Room("jedynka", 1, 120);
+        Room room21 = new Room("dwojka1", 2, 180);
+        Room room22 = new Room("dwojka2", 2, 180);
+        Room room3 = new Room("czworka", 4, 300);
+        
+        hotel.add(room1);
+        hotel.add(room21);
+        hotel.add(room22);
+        hotel.add(room3);
+        
+        List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
+        List<QueryResult> r = hotel.findTheCheapestRooms(result);
+        
+        System.out.println(r.get(0).rooms.get(0).name);
+        System.out.println(r.get(1).rooms.get(0).name);
+        System.out.println(r.get(1).rooms.get(1).name);
+        System.out.println(r.get(2).rooms.get(0).name);
+        System.out.println(r.get(2).rooms.get(1).name);
+
+        assertEquals(3, r.size());
+        assertEquals(300, r.get(0).price());
+    }
+    }
+    
+ 

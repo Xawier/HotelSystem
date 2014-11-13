@@ -14,10 +14,12 @@ import java.util.List;
  */
 public class QueryResult {
     public List<Room> rooms;
+    //public List<List<Room>> combRooms;
     public int price;
     
     public QueryResult(){
         this.rooms = new ArrayList<>();
+        //this.combRooms = new ArrayList<List<Room>>();
         this.price = 0;
     }
     
@@ -25,12 +27,25 @@ public class QueryResult {
         this.rooms.add(room);
         this.price = price;
     }
-    
+    /*
+    public void addListRooms(List<Room> rooms){
+        this.combRooms.add(rooms);
+    }
+    */
     List<Room> rooms(){
         return this.rooms;
     }
     
     public int price(){
         return this.price;
+    }
+    
+    public int countPersonsInRoom(){
+        int i = 0;
+        for(Room room: this.rooms){
+            i += room.n_persons;
+        }
+        
+        return i;
     }
 }

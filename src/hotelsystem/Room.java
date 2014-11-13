@@ -5,6 +5,9 @@
  */
 package hotelsystem;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Mateusz
@@ -13,6 +16,7 @@ public class Room {
     public String name;
     public int n_persons;
     public int price;
+    public Reservation reservation;
     
     public Room(String name, int n_persons, int price){
         this.name = name;
@@ -30,5 +34,25 @@ public class Room {
     
     int price(){
         return this.price;
+    }
+    
+    void setReservation(Calendar start, Calendar end, Person person){
+        Reservation r = new Reservation(start,end,person);
+        this.reservation = r;
+    }
+    
+    boolean isReserved(Calendar start, Calendar end){
+        Date startDate = start.getTime();
+        Date endDate = end.getTime();
+        Date sd;
+        Date ed;
+        try{
+            sd = this.reservation.start.getTime();
+            ed = this.reservation.end.getTime();
+        }catch(NullPointerException e){
+            return false;
+        }
+
+        return !startDate.before(sd) && !endDate.after(ed);
     }
 }
