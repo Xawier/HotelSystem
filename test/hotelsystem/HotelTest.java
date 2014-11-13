@@ -103,13 +103,17 @@ public class HotelTest {
         List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
         assertEquals(180*n_days, result.get(0).price());
     }
+<<<<<<< HEAD
     */
+
     @Test
     public void testFindFreeRoomsIfTwoDifferentRooms(){
         System.out.println("If four rooms (1-1, 2-2, 4-1) findFreeRooms() shoud return a ist of three possible results sorted according to price in increasing order");
         Calendar start = new GregorianCalendar(2014, 8, 12);
         Calendar end = new GregorianCalendar(2014, 8, 13);
+
         int n_persons = 3;
+
                 
         Hotel hotel = new Hotel();
         Room room1 = new Room("jedynka", 1, 120);
@@ -121,7 +125,7 @@ public class HotelTest {
         hotel.add(room21);
         hotel.add(room22);
         hotel.add(room3);
-        
+
         List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
         assertEquals(4, result.size());
     }
@@ -168,16 +172,11 @@ public class HotelTest {
         
         List<QueryResult> result = hotel.findFreeRooms(start, end, n_persons);
         List<QueryResult> r = hotel.findTheCheapestRooms(result);
-        
-        System.out.println(r.get(0).rooms.get(0).name);
-        System.out.println(r.get(1).rooms.get(0).name);
-        System.out.println(r.get(1).rooms.get(1).name);
-        System.out.println(r.get(2).rooms.get(0).name);
-        System.out.println(r.get(2).rooms.get(1).name);
 
         assertEquals(3, r.size());
         assertEquals(300, r.get(0).price());
+        assertEquals(300, r.get(1).price());
+        assertEquals(300, r.get(2).price());
     }
-    }
-    
- 
+}
+
